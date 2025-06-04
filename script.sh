@@ -84,7 +84,7 @@ if [[ "$cpu_architecture" = "x86_64" && ("$cpu_vendor" = "GenuineIntel" || "$cpu
 			echo "The VM is tweaked successfully."
                         echo "Starting VM"
 		fi
-  		if [ $? -nq 0 ]; then
+  		if [ $? -ne 0 ]; then
     			echo "Something error occurred. error $?"
        		fi
 	elif [[ $final_permission = n || $final_permission = N ]]; then 
