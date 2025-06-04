@@ -71,7 +71,7 @@ if [[ "$cpu_architecture" = "x86_64" && ("$cpu_vendor" = "GenuineIntel" || "$cpu
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/TM/TSCMode" "RealTSCOffset"
                         echo "The VM is tweaked successfully."
                         echo "Starting VM"
-		
+			vboxmanage startvm "$selected_vm_name"
 		elif [ $cpu_vendor = AuthenticAMD ]; then
 			VBoxManage modifyvm "$selected_vm_name" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "iMac19,3"
@@ -83,6 +83,7 @@ if [[ "$cpu_architecture" = "x86_64" && ("$cpu_vendor" = "GenuineIntel" || "$cpu
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/TM/TSCMode" "RealTSCOffset"
 			echo "The VM is tweaked successfully."
                         echo "Starting VM"
+			vboxmanage startvm "$selected_vm_name"
 		fi
   		if [ $? -ne 0 ]; then
     			echo "Something error occurred. error $?"
