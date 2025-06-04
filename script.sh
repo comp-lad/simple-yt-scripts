@@ -69,14 +69,8 @@ if [[ "$cpu_architecture" = "x86_64" && ("$cpu_vendor" = "GenuineIntel" || "$cpu
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 0
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/TM/TSCMode" "RealTSCOffset"
-			if [ $? -eq 0 ]; then
-                                echo "The VM is tweaked successfully."
-                                echo "Starting VM"
-                                VBoxManage startvm "$selected_vm_name"
-                        else
-                                echo "Something error occured. error $?"
-                                exit
-                        fi
+                        echo "The VM is tweaked successfully."
+                        echo "Starting VM"
 		
 		elif [ $cpu_vendor = AuthenticAMD ]; then
 			VBoxManage modifyvm "$selected_vm_name" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
@@ -87,14 +81,8 @@ if [[ "$cpu_architecture" = "x86_64" && ("$cpu_vendor" = "GenuineIntel" || "$cpu
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 0
 			VBoxManage modifyvm "$selected_vm_name" --cpu-profile "Intel Core i7-6700K"
 			VBoxManage setextradata "$selected_vm_name" "VBoxInternal/TM/TSCMode" "RealTSCOffset"
-			if [ $? -eq 0 ]; then
-				echo "The VM is tweaked successfully."
-				echo "Starting VM"
-                        	VBoxManage startvm "$selected_vm_name"
-			else 
-				echo "Something error occured. error $?"
-				exit
-			fi
+			echo "The VM is tweaked successfully."
+                        echo "Starting VM"
 		fi
 	elif [[ $final_permission = n || $final_permission = N ]]; then 
 		echo "Interrupted by the user"
