@@ -52,6 +52,7 @@ if [[ "$cpu_architecture" = "x86_64" && ("$cpu_vendor" = "GenuineIntel" || "$cpu
 		echo "The selected VM is being tweaked to run MAC os..."
 		
 		# Working upon the VM 
+  		set -e
 		VBoxManage modifyvm "$selected_vm_name" --boot1 disk --boot2 dvd --boot3 none --boot4 none
 		VBoxManage modifyvm "$selected_vm_name" --firmware efi
 		VBoxManage modifyvm "$selected_vm_name" --chipset ich9
